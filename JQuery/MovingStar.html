@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovingStarByJquery</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script>
+    </script>
+</head>
+
+<body>
+    <div>
+        <h2>
+            請滑動星星給分
+        </h2>
+        <img id="idimg1" src="Images/star.gif" width="96px" />
+        <img id="idimg2" src="Images/star.gif" width="96px" />
+        <img id="idimg3" src="Images/star.gif" width="96px" />
+        <img id="idimg4" src="Images/star.gif" width="96px" />
+        <img id="idimg5" src="Images/star.gif" width="96px" />
+        <span id="idsp1">來打分數八!</span>
+        <p id="idp1">
+            請給分吧!
+        </p>
+    </div>
+    <script>
+        flagclick = false;
+        ActIni();
+        function ActIni() {
+            for (i = 1; i <= 5; i++) {
+                $(("#idimg" + i)).mouseenter(function () {
+                    flagclick = false;
+                    imgNum = $("img").index($(this)) + 1;
+                    clearAll();
+                    for (i = 1; i <= imgNum; i++) {
+                        $("#idimg" + i).prop("src", "images/chngstar.gif");
+                    }
+                    $("#idsp1").text("你選的是" + ($("img").index($(this)) + 1) + "星");
+                    $("#idp1").text("請點擊給分");
+                });
+                $("#idimg" + i).mouseleave(function () {
+                    if (flagclick == false) {
+                        imgNum = $("img").index($(this)) + 1;
+                        clearAll();
+                    }
+                });
+                $("#idimg" + i).click(function () {
+                    flagclick = true;
+                    $("#idsp1").text("你選的是" + $(this).index() + "星");
+                    $("#idp1").text("你所打的分數是" + $(this).index() + "星");
+                });
+            }
+        }
+        function clearAll() {
+            for (i = 1; i <= imgNum; i++) {
+                $("#idimg" + i).prop("src", "images/star.gif");
+            }
+        }
+
+    </script>
+</body>
+
+</html>

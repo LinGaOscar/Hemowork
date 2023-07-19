@@ -1,0 +1,27 @@
+h1 {
+    color: crimson;
+    background-color: darkgrey;
+}
+
+h2 {
+    color: gold;
+    background-color: orangered;
+    text-decoration: line-through;
+}
+
+.st1 {
+    color: orchid;
+    font-weight: bold;
+    font-family: "標楷體";
+}
+
+.st2 {
+    color: palegreen;
+    background-color: sienna;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#st3 {
+    color: pink;
+    background-color: purple;
+}

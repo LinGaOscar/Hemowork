@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MovingStar</title>
+    <style>
+        div {
+            width: 600px;
+            border: 2px solid red;
+            border-radius: 15px;
+            background-color: yellow;
+            margin: 30px auto;
+            padding: 10px;
+            display: block;
+            text-shadow: 5px 5px 10px rgb(255, 0, 0);
+            box-shadow: -10px -10px 15px black;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <a href="9x9HomeWork.html">9*9作業</a>
+        <a href="FormCHomeWork.html">表單作業</a>
+        <a href="AdsFrame.html">廣告作業</a>
+        <a href="LeapYearCalendar.html">日期作業</a>
+        <h2>
+            請滑動星星給分
+        </h2>
+        <img id="idimg1"  src="Images/star.gif" width="96px"/>
+        <img id="idimg2"  src="Images/star.gif" width="96px"/>
+        <img id="idimg3"  src="Images/star.gif" width="96px"/>
+        <img id="idimg4"  src="Images/star.gif" width="96px"/>
+        <img id="idimg5"  src="Images/star.gif" width="96px"/>
+        <span id="idsp1">來打分數八!</span>
+        <p id="idp1">
+            請給分吧!
+        </p>
+    </div>
+
+    <script>
+        ini();
+        function ini() {
+            flagclick = false;
+            for (i = 1; i <= 5; i++) {
+                // console.log(i);
+                document.querySelector("#idimg" + i).onmouseover = mouseover;
+                document.querySelector("#idimg" + i).onmouseout = mouseout;
+                document.querySelector("#idimg" + i).onclick = mouseclick;
+            }
+            elesp1 = document.getElementById("idsp1");
+            elep1 = document.getElementById("idp1");
+        }
+        function mouseclick() {
+            star = this.id;
+            starNum = star.charAt(5);
+            flagclick = true;
+            // console.log(this.id + "click");
+            elesp1.innerHTML = "你選的是" + this.id.charAt(5) + "星";
+            elep1.innerHTML = "你所打的分數是" + this.id.charAt(5) + "星";
+        }
+        function mouseover() {
+            flagclick = false;
+            if (flagclick == false) {
+                closeAll();
+                for (i = 1; i <= this.id.charAt(5); i++) {
+                    // console.log("idimg5".match(/\d+/)[0]);
+                    document.querySelector("#idimg" + i).src = "Images/chngstar.gif";
+                }
+                elesp1.innerHTML = "選的是" + this.id.charAt(5) + "星";
+                elep1.innerHTML = "請點擊給分";
+            }
+            // console.log(this.id + "IN");
+        }
+        function mouseout() {
+            closeAll();
+            // console.log(this.id + "OUT");
+        }
+        function closeAll() {
+            if (flagclick == false) {
+                for (i = 1; i <= 5; i++) {
+                    document.querySelector("#idimg" + i).src = "Images/star.gif";
+                    elep1.innerHTML = "請給分吧!";
+                }
+            }
+            // console.log("Close All");
+        }
+    </script>
+</body>
+
+</html>

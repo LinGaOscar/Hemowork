@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FormCheck</title>
+    <style>
+        .div1 {
+            width: 600px;
+            border: 2px solid red;
+            border-radius: 15px;
+            background-color: yellow;
+            margin: 30px auto;
+            padding: 10px;
+            display: block;
+            text-shadow: 5px 5px 10px rgb(255, 0, 0);
+            box-shadow: -10px -10px 15px black;
+        }
+
+        fieldset {
+            width: 500px;
+            margin: 10px;
+            border: 2px solid orangered;
+            margin: 30px auto;
+            border-radius: 15px;
+            text-align: center;
+            font-size: large;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="div1">
+        <a href="9x9HomeWork.html">9*9作業</a>
+        <a href="AdsFrame.html".html">廣告作業</a>
+        <a href="MovingStarHomeWork.html">評分作業</a>
+        <a href="LeapYearCalendar.html">日期作業</a>
+        <form action="#" method="GET" enctype="multipart/form-data">
+            <fieldset>
+                <legend>FormCheck</legend>
+                <div><label for="nameid">姓名</label>
+                    <input type="text" id="nameid" name="account" maxlength="18" size="10" autofocus autocomplete="off"
+                        required onblur="CheckName()">
+                    <span id="sp1id">請輸入名子 </span>
+                    <p>
+                        (1.不可以空白，2.至少2個字，3.必須為中文)
+                    </p>
+                    <hr>
+                </div>
+                <div><label for="pwid">密碼</label>
+                    <input type="password" id="pwid" name="password" maxlength="12" size="10" required
+                        onblur="CheckPW()">
+                    <span id="sp2id">請輸入密碼 </span>
+                    <p>
+                        (1.不可以空白，2.至少6個字(包含英文、數字、特殊字元!@#$%^&*)，3.必須為中文)
+                    </p>
+                    <hr>
+                </div>
+                <div><label for="dateid">日期</label>
+                    <input type="text" id="dateid" name="date" maxlength="10" size="10" autocomplete="off" required
+                        onblur="CheckDate()">
+                    <span id="sp3id">請輸入日期 </span>
+                    <p>
+                        (格式:西元 年-月-日，EX: 1991/10/10)
+                    </p>
+                    <!-- pattern="09\d{2}\-?\d{3}\-?\d{3}"> 手機-->
+                </div>
+            </fieldset>
+            <div>
+                <input type="submit" value="送出">
+                <input type="reset" value="清除">
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function CheckName() {
+            let idName = document.getElementById("nameid");
+            let idNameVal = idName.value;
+            let idSp1 = document.getElementById("sp1id");
+            idSp1.innerHTML = "";
+            if (idNameVal == "") {
+                idSp1.innerHTML = "不可以空白";
+            } else if (idNameVal.length < 2) {
+                idSp1.innerHTML = "不可以小於2個字";
+            } else {
+                for (i = 0; i < idNameVal.length; i++) {
+                    let ch = idNameVal.charAt(i).toUpperCase();
+                    if (ch >= "A" && ch <= "Z") {
+                        idSp1.innerHTML = "不可以有英文";
+                        break;
+                    } else if (ch >= "0" && ch <= "9") {
+                        idSp1.innerHTML = "不可以有數字";
+                        break;
+                    } else {
+                        idSp1.innerHTML = "正確: " + idNameVal;
+                    }
+                }
+            }
+        }
+        function CheckPW() {
+            let idPW = document.getElementById("pwid");
+            let idPWVal = idPW.value;
+            let idSp2 = document.getElementById("sp2id");
+            idSp2.innerHTML = "";
+            let flag1 = false, flag2 = false, flag3 = false;
+            let spchar = "!@#$%^&*()_+";
+
+            if (idPWVal == "") {
+                idSp2.innerHTML = "不可以空白";
+            } else if (idPWVal.length < 6) {
+                idSp2.innerHTML = "不可以小於6位數";
+            } else {
+                for (i = 0; i < idPWVal.length; i++) {
+                    let ch = idPWVal.charAt(i).toUpperCase();
+                    if (ch >= "A" && ch <= "Z") {
+                        console.log(ch + "a");
+                        flag1 = true;
+                    } else if (ch >= "0" && ch <= "9") {
+                        console.log(ch + "n");
+                        flag2 = true;
+                    } else if (ch.includes(spchar.substring(0, spchar.length)) != -1) {
+                        console.log(ch + "sp");
+                        flag3 = true;
+                    }
+                    if (flag1 == true && flag3 == true && flag2 == true) {
+                        idSp2.innerHTML = "正確: " + idPWVal;
+                    } else {
+                        idSp2.innerHTML = "請包含正確格式 " + idPWVal + ":";
+                        if (flag1 == false) idSp2.innerHTML += "沒英文";
+                        if (flag2 == false) idSp2.innerHTML += "沒數字";
+                        if (flag3 == false) idSp2.innerHTML += "沒特殊字元";
+                    }
+                }
+            }
+        }
+        function CheckDate() {
+            let idDate = document.getElementById("dateid");
+            let idDateVal = idDate.value;
+            let idSp3 = document.getElementById("sp3id");
+            idSp3.innerHTML = "";
+            let dDateValDate = new Date(idDateVal);
+            let dDateValCy = dDateValDate.getFullYear();
+            let dDateValCm = dDateValDate.getMonth() + 1;
+            let dDateValCd = dDateValDate.getDate();
+            dDateValC = dDateValCy + "/" + dDateValCm + "/" + dDateValCd;
+            idSp3.innerHTML = dDateValC;
+
+            if (idDateVal == "") {
+                idSp3.innerHTML = "不可以空白";
+            } else {
+                if (dDateValC == idDateVal) {
+                    idSp3.innerHTML = "日期正確" + dDateValC + "跟輸入一樣" + idDateVal;
+
+                } else {
+                    idSp3.innerHTML = "格式不對" + idDateVal + "請依照範例填寫1991/10/10";
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

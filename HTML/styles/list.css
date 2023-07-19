@@ -1,0 +1,39 @@
+.list {
+    list-style-type: circle;
+    color: tomato;
+    text-decoration: underline;
+    background-color: rgb(52, 175, 144);
+    
+    /* 更改邊框 */
+    border: 20px double salmon;
+
+    /* 等同用 border 輸入3值  */
+    /* border-width: 10px;
+    border-style: dotted;
+    border-color: silver;  */
+    
+    /* 邊框的圓角   左上右下+右上左下
+    單一值為四角半徑*/
+    border-radius: 15px 40px;
+    
+}
+
+.list1 {
+    list-style-type: none;
+    list-style-image: url(../images/P3.png);
+    /* 路徑要記得找回相對位置用 "../"回上一層 */
+    text-decoration: overline;
+    color: turquoise;
+    font-style: oblique;
+    background-color: violet;
+}
+
+.in {
+    list-style-position: inside;
+    background-color: yellow;
+}
+
+.out {
+    list-style-position: outside;
+    background-color: rebeccapurple;
+}

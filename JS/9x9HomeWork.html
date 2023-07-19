@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="UTF-8">
+    <title>9x9.html</title>
+    <style>
+        /* body{
+            background-color:lemonchiffon;
+        } */
+        div {
+            width: 600px;
+            border: 2px solid red;
+            border-radius: 15px;
+            background-color: yellow;
+            margin: 30px auto;
+            padding: 10px;
+            display: block;
+            text-shadow: 5px 5px 10px rgb(255, 0, 0);
+            box-shadow: -10px -10px 15px black;
+        }
+
+        table {
+            border: 3px solid red;
+            padding: 1px;
+            border-radius: 15px;
+            text-align: center;
+            background-color: white;
+            font-size: 18px;
+            margin: 45px auto;
+        }
+
+        td {
+            /* background-color: white; */
+            border-radius: 10px;
+            border: 3px solid blue;
+
+        }
+
+        td:hover {
+            background-color: red;
+            color: white;
+        }
+
+        tr:nth-child(2n) {
+            background-color: rgb(255, 120, 180);
+        }
+
+        tr:nth-child(2n+1) {
+            background-color: rgb(174, 161, 248);
+            font-weight: bolder;
+        }
+
+        h2 {
+            font-size: 45px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    
+    <script>
+        let herfLink = "<a href=\"AdsFrame.html\">廣告作業 </a><a href=\"FormCHomeWork.html\">表單作業 </a><a href=\"MovingStarHomeWork.html\">評分作業 </a>"
+        document.write("<div>"+herfLink+"<h2>Multiplication table</h2><table><tbody>")
+        for (let i = 1; i < 10; i++) {
+            document.write("<tr>");
+            for (let j = 1; j < 10; j++) {
+                // console.log(i + "*" + j + "=" + i * j);
+                document.write("<td>" + j + "*" + i + "=" + i * j + "</td>")
+            }
+            document.write("</tr>");
+        }
+        document.write("</tbody></table></div>")
+
+        // document.write("<div><h2>Multiplication table</h2><table>")
+        // for (let i = 2; i < 10; i++) {
+        //     document.write("<td>");
+        //     for (let j = 1; j < 10; j++) {
+        //         console.log(i + "*" + j + "=" + i * j);
+        //         document.write(i + "*" + j + "=" + i * j + "<br>")
+        //     }
+        //     document.write("</td>");
+        // }
+        // document.write("</table></div>")
+
+        // document.write("<table><tr><td>AA</td><td>BB</td></tr><tr><td>AA</td><td>BB</td></tr></table>");
+
+    </script>
+</body>
+
+</html>

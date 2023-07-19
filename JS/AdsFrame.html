@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdsFrame</title>
+    <style>
+        .div1 {
+            width: 600px;
+            border: 2px solid red;
+            border-radius: 15px;
+            background-color: yellow;
+            margin: 30px auto;
+            padding: 10px;
+            display: block;
+            text-shadow: 5px 5px 10px rgb(255, 0, 0);
+            box-shadow: -10px -10px 15px black;
+        }
+
+        .ball {
+            /* position: absolute; */
+            width: 30px;
+            height: 30px;
+            /* left: 50px; */
+            /* top: 50px; */
+            margin-left: 20px;
+            background-color: #ff2f27;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            color: white;
+            border: 1px solid black;
+            display: inline;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="div1">
+        <a href="9x9HomeWork.html">9*9作業</a>
+        <a href="FormCHomeWork.html">表單作業</a>
+        <a href="MovingStarHomeWork.html">評分作業</a>
+        <a href="LeapYearCalendar.html">日期作業</a>
+        <fieldset>
+            <legend style="text-align: center;">Ads Carousel</legend>
+            <a id="aid" href="https://zh.wikipedia.org/wiki/%E5%8F%B0%E7%81%A3%E9%BB%91%E7%86%8A">
+                <img src="Images/220px-Formosan_Black_Bear.jpg" alt="無法顯示" width="200" height="300" margin="2000px">
+            </a>
+            <!-- <img src="images/p1.jpg" alt="無法顯示" title="台灣黑熊" width="200"> -->
+            <figcaption style="color: rgb(0, 0, 0);font-weight: bold;font-size: 20px;margin-left: 20px;">台灣黑熊圖片
+            </figcaption>
+        </fieldset>
+        <div>
+            <img src="" alt="">
+            <img src="" alt="">
+            <img src="" alt="">
+            <img src="" alt="">
+            <img src="" alt="">
+        </div>
+        <div>
+            <img src="Images/back.png" width="20" height="30">
+            <img src="Images/next.png" width="20" height="30">
+        </div>
+    </div>
+    <script>
+
+        var allImg = document.getElementsByTagName('img');
+        var hyperId = document.getElementById('aid');
+        var flagFoucs = false;
+
+        // var num = allSP.length;
+        for (i = 1; i <= 5; i++) {
+            // console.log(i);
+            allImg[i].src = "Images/" + i + ".gif";
+            allImg[i].width = "50";
+            allImg[i].id = "img" + i;
+            allImg[i].onmouseover = mouseover;
+            allImg[i].onmouseout = mouseout;
+        }
+        for (i = 6; i <= 7; i++) {
+            allImg[i].id = "img" + i;
+            allImg[i].onclick = mouseclick;
+        }
+        // console.log(allImg);
+
+        function mouseover() {
+            flagFoucs = true;
+            clearAllImg();
+            setclock();
+            switch (this.id) {
+                case "img1":
+                    allImg[0].src = "Images/220px-Formosan_Black_Bear.jpg";
+                    allImg[1].src = "Images/101.gif";
+                    hyperId.href = "https://zh.wikipedia.org/wiki/%E5%8F%B0%E7%81%A3%E9%BB%91%E7%86%8A";
+                    break;
+                case "img2":
+                    allImg[0].src = "Images/220px-LeopardusBrachyurusWolf.jpg";
+                    allImg[2].src = "Images/101.gif";
+                    hyperId.href = "https://zh.wikipedia.org/wiki/%E5%8F%B0%E7%81%A3%E9%9B%B2%E8%B1%B9";
+                    break;
+                case "img3":
+                    allImg[0].src = "Images/250px-2010_07_19400_7206_Wenshan_District,_Taipei,_Zoo,_Sus_scrofa_taivanus,_Formosan_wild_boar,_Taiwan.jpg";
+                    allImg[3].src = "Images/101.gif";
+                    hyperId.href = "https://zh.wikipedia.org/wiki/%E5%8F%B0%E7%81%A3%E9%87%8E%E8%B1%AC";
+                    break;
+                case "img4":
+                    allImg[0].src = "Images/250px-Cervus_nippon_taioanus.jpg";
+                    allImg[4].src = "Images/101.gif";
+                    hyperId.href = "https://zh.wikipedia.org/wiki/%E5%8F%B0%E7%81%A3%E6%A2%85%E8%8A%B1%E9%B9%BF";
+                    break;
+                case "img5":
+                    allImg[0].src = "Images/260px-Shoushan_National_Nature_Park--Created_by_Nora.jpg";
+                    allImg[5].src = "Images/101.gif";
+                    hyperId.href = "https://zh.wikipedia.org/wiki/%E5%8F%B0%E7%81%A3%E7%8D%BC%E7%8C%B4";
+                    break;
+                default:
+                    break;
+            }
+        }
+        function mouseclick() {
+
+            switch (this.id) {
+                case "img6":
+                    setclock();
+                    star = this.id;
+                    console.log(star + " Ckick")
+                    k = k - 2;
+                    clockTik();
+                    setclock();
+                    break;
+                case "img7":
+                    star = this.id;
+                    console.log(star + " Ckick")
+                    clockTik();
+                    setclock();
+                default:
+                    break;
+            }
+        }
+        function mouseout() {
+            flagFoucs = false;
+            clearAllImg();
+            setclock();
+            star = this.id;
+            console.log(star + " Ckick")
+        }
+        function clearAllImg() {
+            for (i = 1; i <= 5; i++) {
+                // console.log(i);
+                allImg[i].src = "Images/" + i + ".gif";
+            }
+
+        }
+        function setclock() {
+            window.clearInterval(t1);
+            if (flagFoucs == false) {
+
+                t1 = window.setInterval(clockTik, 2500);
+            }
+        }
+        function clockTik() {
+            k = k + 1;
+            if (k == 6) k = 1;
+            else if (k <= 0) k = 5;
+            clearAllImg();
+            console.log("k=" + k);
+            switch (k) {
+                case 1:
+                    allImg[0].src = "Images/220px-Formosan_Black_Bear.jpg";
+                    allImg[1].src = "Images/101.gif";
+                    hyperId.href = "https://zh.wikipedia.org/wiki/%E5%8F%B0%E7%81%A3%E9%BB%91%E7%86%8A";
+                    break;
+                case 2:
+                    allImg[0].src = "Images/220px-LeopardusBrachyurusWolf.jpg";
+                    allImg[2].src = "Images/101.gif";
+                    hyperId.href = "https://zh.wikipedia.org/wiki/%E5%8F%B0%E7%81%A3%E9%9B%B2%E8%B1%B9";
+                    break;
+                case 3:
+                    allImg[0].src = "Images/250px-2010_07_19400_7206_Wenshan_District,_Taipei,_Zoo,_Sus_scrofa_taivanus,_Formosan_wild_boar,_Taiwan.jpg";
+                    allImg[3].src = "Images/101.gif";
+                    hyperId.href = "https://zh.wikipedia.org/wiki/%E5%8F%B0%E7%81%A3%E9%87%8E%E8%B1%AC";
+                    break;
+                case 4:
+                    allImg[0].src = "Images/250px-Cervus_nippon_taioanus.jpg";
+                    allImg[4].src = "Images/101.gif";
+                    hyperId.href = "https://zh.wikipedia.org/wiki/%E5%8F%B0%E7%81%A3%E6%A2%85%E8%8A%B1%E9%B9%BF";
+                    break;
+                case 5:
+                    allImg[0].src = "Images/260px-Shoushan_National_Nature_Park--Created_by_Nora.jpg";
+                    allImg[5].src = "Images/101.gif";
+                    hyperId.href = "https://zh.wikipedia.org/wiki/%E5%8F%B0%E7%81%A3%E7%8D%BC%E7%8C%B4";
+                    break;
+                default:
+                    break;
+            }
+        }
+        k = 0;
+        let t1 = window.setInterval(clockTik, 2500);
+
+    </script>
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar</title>
+    <style>
+        .div1 {
+            width: 600px;
+            border: 2px solid red;
+            border-radius: 15px;
+            background-color: yellow;
+            margin: 30px auto;
+            padding: 10px;
+            display: block;
+            text-shadow: 5px 5px 10px rgb(255, 0, 0);
+            box-shadow: -10px -10px 15px black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="div1">
+        <a href="9x9HomeWork.html">9*9作業</a>
+        <a href="FormCHomeWork.html">表單作業</a>
+        <a href="AdsFrame.html">廣告作業</a>
+        <a href="MovingStarHomeWork.html">評分作業</a>
+        <fieldset>
+            <legend>居住地</legend>
+            <div>
+                <label for="">年</label>
+                <select>
+                </select>
+                <label for="">月</label>
+                <select>
+                </select>
+                <label for="">日</label>
+                <select>
+                </select>
+            </div>
+            <div>
+
+                <label for="completeDate" class="t1">完整日期 : </label>
+                <span id="sp1id"></span>
+                <span id="sp2id"></span>
+            </div>
+        </fieldset>
+    </div>
+    <script>
+        var allSelect = document.getElementsByTagName('select');
+        var ip1 = document.getElementById("sp1id");
+        var ip2 = document.getElementById("sp2id");
+        ip1.innerHTML = " 選好日子我跟你說";
+
+        var leapyear = false;
+        for (let i = 0; i < allSelect.length; i++) {
+            allSelect[i].id = "selectID" + i;
+            allSelect[i].onchange = changeValue;
+        }
+
+        for (let i = 2010; i < 2021; i++) {
+            allSelect[0].options.add(new Option(i));
+        }
+
+        for (i = 1; i <= 12; i++) {
+            allSelect[1].options.add(new Option(i));
+        }
+
+        function changeValue() {
+            console.log(this.id);
+            switch (this.id) {
+                case "selectID0":
+                    changeYear();
+                    break;
+                case "selectID1":
+                    changeMonth();
+                    break;
+                case "selectID2":
+                    changeDate();
+                    break;
+                default:
+                    break;
+            }
+        }
+        function changeYear() {
+            checkLeap();
+            checkDate();
+        }
+        function changeMonth() {
+            checkLeap();
+            checkDate();
+        }
+        function checkLeap() {
+            let index = allSelect[0].selectedIndex;
+            let yearVal = parseInt(allSelect[0].options[index].text);
+            if (yearVal % 4 == 0) {
+                if (yearVal % 100 == 0) {
+                    if (yearVal % 400 == 0) {
+                        leapyear = true;
+                        console.log(yearVal + " 閏年");
+                        ip1.innerHTML =yearVal + " 閏年";
+                    } else {
+                        leapyear = false;
+                        console.log(yearVal + " 平年");
+                        ip1.innerHTML =yearVal + " 平年";
+                    }
+                } else {
+                    leapyear = true;
+                    console.log(yearVal + " 閏年");
+                    ip1.innerHTML =yearVal + " 閏年";
+                }
+            } else {
+                leapyear = false;
+                console.log(yearVal + " 平年");
+                ip1.innerHTML =yearVal + " 平年";
+            }
+        }
+        function checkDate() {
+            let index = allSelect[1].selectedIndex;
+            let monthVal = parseInt(allSelect[1].options[index].text);
+            allSelect[2].options.length = 0;
+            if (monthVal % 2 != 0) {
+                switch (monthVal) {
+                    case 9:
+                        console.log(monthVal + "奇數月9");
+                        ip2.innerHTML =monthVal + "奇數月9";
+                        for (i = 1; i <= 30; i++) {
+                            allSelect[2].options.add(new Option(i));
+                        }
+                        break;
+                    case 11:
+                        console.log(monthVal + "奇數月11");
+                        ip2.innerHTML =monthVal + "奇數月11";
+                        for (i = 1; i <= 30; i++) {
+                            allSelect[2].options.add(new Option(i));
+                        }
+                        break;
+                    default:
+                        console.log(monthVal + "奇數月d");
+                        ip2.innerHTML =monthVal + "奇數月d";
+                        for (i = 1; i <= 31; i++) {
+                            allSelect[2].options.add(new Option(i));
+                        }
+                        break;
+                }
+            } else {
+                switch (monthVal) {
+                    case 2:
+                        console.log(monthVal + "偶數月2");
+                        ip2.innerHTML =monthVal + "偶數月2";
+                        if (leapyear == true) {
+                            for (i = 1; i <= 29; i++) {
+                                allSelect[2].options.add(new Option(i));
+                            }
+                        } else {
+                            for (i = 1; i <= 28; i++) {
+                                allSelect[2].options.add(new Option(i));
+                            }
+                        }
+                        break;
+                    case 10:
+                        console.log(monthVal + "偶數月10");
+                        ip2.innerHTML =monthVal + "偶數月10";
+                        for (i = 1; i <= 31; i++) {
+                            allSelect[2].options.add(new Option(i));
+                        }
+                        break;
+                    case 12:
+                        console.log(monthVal + "偶數月12");
+                        ip2.innerHTML =monthVal + "偶數月12";
+                        for (i = 1; i <= 31; i++) {
+                            allSelect[2].options.add(new Option(i));
+                        }
+                        break;
+                    default:
+                        console.log(monthVal + "偶數月d");
+                        ip2.innerHTML =monthVal + "偶數月d";
+                        for (i = 1; i <= 30; i++) {
+                            allSelect[2].options.add(new Option(i));
+                        }
+                        break;
+                }
+            }
+        }
+        function changeDate() {
+            let indexy = allSelect[0].selectedIndex;
+            let dyearVal = parseInt(allSelect[0].options[indexy].text);
+            let indexm = allSelect[1].selectedIndex;
+            let dmonthVal = parseInt(allSelect[1].options[indexm].text);
+            let indexmd = allSelect[2].selectedIndex;
+            let dDateVal = parseInt(allSelect[2].options[indexmd].text);
+            ip1.innerHTML = " 選的日子是: " + dyearVal + " 年" + dmonthVal + " 月" + dDateVal + " 日";
+            ip2.innerHTML = " ";
+        }
+
+    </script>
+</body>
+
+</html>
